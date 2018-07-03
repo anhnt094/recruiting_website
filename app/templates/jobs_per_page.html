@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% for job in jobs.items %}
+        <p>
+            <a href="{{ url_for('job_descriptions', jobID=job.github_issues_number) }}">{{ job.title }}</a>
+        </p>
+    {% endfor %}
+    <p style="display:inline"> Pages
+        {% if jobs.page > 1 %}
+            <a href="{{ url_for('jobs_per_page', page_num=jobs.prev_num) }}">Pre</a>
+        {% endif %}
+        {% for page in jobs.iter_pages(left_edge=3, right_edge=3, left_current=3, right_current=3) %}
+            {% if page %}
+                <a href="{{ url_for('jobs_per_page', page_num=page) }}">{{ page }}</a>
+            {% endif %}
+        {% endfor %}
+        {% if jobs.page < jobs.pages %}
+            <a href="{{ url_for('jobs_per_page', page_num=jobs.next_num) }}">Next</a>
+        {% endif %}
+    </p>
+
+{% endblock %}

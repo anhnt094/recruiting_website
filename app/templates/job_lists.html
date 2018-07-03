@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Hello {{ current_user.username }}!</h1>
+    {% for job in job_lists %}
+    <div><p><li><a href="{{ url_for('job_descriptions', jobID=job.github_issues_number) }}">{{ job.title }}</a></li></p></div>
+    {% endfor %}
+{% endblock %}
