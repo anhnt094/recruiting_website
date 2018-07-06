@@ -1,2 +1,2 @@
 # Procfile
-web: gunicorn app:routes --log-file -
+web: gunicorn app:app --log-file -
